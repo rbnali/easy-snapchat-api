@@ -1,2 +1,2 @@
 # snap-marketing-api
-Get simple information on your Snapchat API spendings by day
+Get your daily Snapchat marketing spendings using the API
