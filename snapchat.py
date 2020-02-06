@@ -144,4 +144,4 @@ if __name__ == '__main__':
     if day_diff_strptime(args.start, args.end) < 31:
     	main(snap_credentials, args.start, args.end)
     else:
-    	Exception('The difference between start and end date must be less than 30 days')
+    	raise Exception('The difference between start and end date must be less than 30 days')
