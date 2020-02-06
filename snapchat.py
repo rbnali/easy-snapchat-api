@@ -6,15 +6,15 @@ import requests
 import pandas as pd
 import argparse
 
-### GENERAL ###
 
-def time_diff_strptime(start, end):
+### GENERAL ###
+def day_diff_strptime(start, end):
 	s = datetime.strptime(start, '%Y-%m-%d')
 	e = datetime.strptime(end, '%Y-%m-%d')
 	return (e-s).days
 
-### SNAPCHAT ###
 
+### SNAPCHAT ###
 def get_snapchat_access_token(snap_credentials):
 
 	# Initialize
@@ -36,7 +36,6 @@ def get_snapchat_access_token(snap_credentials):
 
 
 def get_all_campaigns(access_token, ad_accounts_id):
-	
 	# Initialize
 	url_campaigns = 'https://adsapi.snapchat.com/v1/adaccounts/%s/campaigns' % (ad_accounts_id)
 	headers= {'Authorization': 'Bearer %s' % (access_token)}
@@ -54,8 +53,8 @@ def get_all_campaigns(access_token, ad_accounts_id):
 
 	return campaign_ids
 
+
 def get_report_from_campaign_id(access_token, campaign_id, start_date, end_date):  
-	
 	# Initialize
 	headers= {'Authorization': 'Bearer %s' % (access_token)}
 	
@@ -100,10 +99,9 @@ def get_report_from_campaign_id(access_token, campaign_id, start_date, end_date)
 	
 	return df
 
+
 ### PROCESS ###
-
 def main(snap_credentials, start_date, end_date):
-
 	# Initialize
 	snap = pd.DataFrame()
 
@@ -111,11 +109,11 @@ def main(snap_credentials, start_date, end_date):
 	access_token = get_snapchat_access_token(snap_credentials)
 
 	# Get all campaign ids
-	print('[INFO] Getting Snapchat API access token...')
+	print('Getting Snapchat API access token...')
 	campaign_ids = get_all_campaigns(access_token, snap_credentials['ad_accounts_id'])
 
 	# Get campaign data from snapchat API
-	print('[INFO] Getting all campaigns from Snapchat API')
+	print('Getting all campaigns from Snapchat API...')
 	for campaign_id in campaign_ids:
 		new = get_report_from_campaign_id(
 			access_token,
@@ -126,14 +124,12 @@ def main(snap_credentials, start_date, end_date):
 		snap = pd.concat([snap,new])
 
 	# Send to CSV
-	print('[INFO] Saving data to csv file')
+	print('Saving data to csv file...')
 	snap.to_csv('snap.csv', index=False)
 
 
 ### RUN ###
-
 if __name__ == '__main__':
-
     # Get snapchat credentials and refresh token
     with open('snap_credentials.json') as f:
         snap_credentials = json.load(f)
@@ -145,7 +141,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Run
-    if time_diff_strptime(args.start, args.end) < 31:
+    if day_diff_strptime(args.start, args.end) < 31:
     	main(snap_credentials, args.start, args.end)
     else:
-    	print('[STOP] The difference between start and end date must be less than 30 days')
+    	Exception('The difference between start and end date must be less than 30 days')
