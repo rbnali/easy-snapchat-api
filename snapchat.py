@@ -8,11 +8,11 @@ import os
 
 
 SNAP_CREDENTIALS = {
-	"client_id": os.environ.get("YOUR_CLIENT_ID"),
-	"client_secret": os.environ.get("YOUR_CLIENT_SECRET"),
-	"refresh_token": os.environ.get("YOUR_REFRESH_TOKEN"),
-	"organization_id": os.environ.get("YOUR_ORGANIZATION_ID"),
-	"ad_accounts_id": os.environ.get("YOUR_AD_ACCOUNTS_ID")
+	"client_id": os.environ.get("SNAPCHAT_CLIENT_ID"),
+	"client_secret": os.environ.get("SNAPCHAT_CLIENT_SECRET"),
+	"refresh_token": os.environ.get("SNAPCHAT_REFRESH_TOKEN"),
+	"organization_id": os.environ.get("SNAPCHAT_ORGANIZATION_ID"),
+	"ad_accounts_id": os.environ.get("SNAPCHAT_AD_ACCOUNTS_ID")
 }
 
 

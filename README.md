@@ -8,15 +8,14 @@ Please install all the necesssary requirements with the following command:
 pip install -r requirements.txt
 ```
 
-You will also need to create a json file with your MWS API credentials called `snap_credentials.json` in the same folder as `snapchat.py`.
+You will also need to add your snapchat credentials as environment variables.
 
 ```
-{
-	"client_id":"YOUR_CLIENT_ID",
-	"client_secret": "YOUR_CLIENT_SECRET",
-	"refresh_token":"YOUR_REFRESH_TOKEN",
-	"organization_id":"YOUR_ORGANIZATION_ID",
-	"ad_accounts_id":"YOUR_AD_ACCOUNTS_ID"
+export SNAPCHAT_CLIENT_ID=YOUR_CLIENT_ID
+export SNAPCHAT_CLIENT_SECRET=YOUR_CLIENT_SECRET
+export SNAPCHAT_REFRESH_TOKEN=YOUR_REFRESH_TOKEN
+export SNAPCHAT_ORGANIZATION_ID=YOUR_ORGANIZATION_ID
+export SNAPCHAT_AD_ACCOUNTS_ID=YOUR_AD_ACCOUNTS_ID
 }
 ```
 
